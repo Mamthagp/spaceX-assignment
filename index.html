@@ -23,7 +23,7 @@
         const { useState, useEffect } = React
 
         function YearData(props){
-            const { launch, showData, id} = props
+            const { launch, showData, yearId} = props
             
             return(
                 <div className='filters clearfix'>
@@ -31,7 +31,7 @@
                         <p className='launchyear'>Launch Year</p>
                         <div className='btns'>
                             <div className='yearBtn' onClick={() => {
-                                showData(id)
+                                showData(yearId)
                             }}>2006</div>
                             <div className='yearBtn'>2007</div>
                             <div className='yearBtn'>2008</div>
@@ -76,10 +76,10 @@
                 })
             }, [])
 
-            const showData = ((id) => {
+            const showData = ((yearId) => {
                 const year = launch.filter((ele) => {
                     console.log(ele)
-                    return ele.launch_year === '2006'
+                    return ele.launch_year === yearId
                 })
                 setLaunch(year)
                 console.log(year)
@@ -89,7 +89,7 @@
                 <div className='page clearfix'>
                     <h1 className='page_title'>SpaceX Launch Programs</h1>
                     <div>
-                        <YearData launch = {launch} showData ={showData}/>
+                        <YearData launch = {launch} showData ={showData} yearId={launch.launch_year}/>
                     </div>
                     <div className='launchData'>
                         <div className='data_body clearfix'>
